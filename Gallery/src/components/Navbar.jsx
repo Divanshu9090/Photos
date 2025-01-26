@@ -1,41 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "../styles/Navbar.css"; // Import CSS styling
 
-const Navbar = () => (
-  <nav className="navbar navbar-expand-lg">
-    <div className="container-fluid">
-      <Link className="navbar-brand" to="/">
-        <i className="fas fa-film mr-2"></i>PhotoVault
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i className="fas fa-bars"></i>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
+const Navbar = () => {
+  return (
+    <div className="container">
+      <nav className="navbar">
+        <div className="navbar-logo">
+          {/* <div className="logo-icon">
+          PixelVault
+        </div> */}
+          <span className="logo-text">PixelVault</span>
+        </div>
+        <ul className="navbar-links">
           <li className="nav-item">
-            <Link className="nav-link" to="/">Photos</Link>
+            <a href="#" className="active">
+              Photos
+            </a>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/videos">Videos</Link>
+            <a href="#">Videos</a>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/about">Plans</Link>
+            <a href="#">About</a>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/contact">Contact</Link>
+            <a href="#">Contact</a>
           </li>
         </ul>
-      </div>
+      </nav>
     </div>
-  </nav>
-);
+  );
+};
 
 export default Navbar;
