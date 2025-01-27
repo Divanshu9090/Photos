@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 import "../styles/auth.css";
 
-const AuthForm = ({ onAuthSuccess }) => {
+
+const AuthForm = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
         email: "",
         password: "",
     });
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleToggle = () => {
         setIsSignUp(!isSignUp);
@@ -19,34 +23,33 @@ const AuthForm = ({ onAuthSuccess }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(isSignUp ? "Sign Up Data:" : "Login Data:", formData);
-
-        onAuthSuccess();
+        try {
+            if (isSignUp) {
+                await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                navigate('/Signupdetails');
+            } else {
+                await signInWithEmailAndPassword(auth, formData.email, formData.password);
+                navigate('/home');
+            }
+        } catch (error) {
+            let em = error.message.replace("Firebase:", "");
+            em = em.replace("("," ");
+            em = em.replace(").","");
+            setErrorMessage(em);
+            console.error("Authentication error:", error);
+        }
     };
 
     return (
-        <div className={`container ${isSignUp ? "active" : ""}`} id="container">
-            <div className="form-container sign-up">
+        <div id="body-Authform">
+        <div className={`container ${isSignUp ? "active" : ""}`} id="AuthForm">
+            <div className="form-container sign-up">    
                 <form onSubmit={handleSubmit}>
                     <h1>Create Account</h1>
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                    />
+                    {errorMessage && <div className="error-message">{errorMessage}</div>} 
+                    
                     <input
                         type="email"
                         name="email"
@@ -70,6 +73,7 @@ const AuthForm = ({ onAuthSuccess }) => {
             <div className="form-container sign-in">
                 <form onSubmit={handleSubmit}>
                     <h1>Sign In</h1>
+                    {errorMessage && <div className="error-message">{errorMessage}</div>} 
                     <input
                         type="email"
                         name="email"
@@ -104,6 +108,7 @@ const AuthForm = ({ onAuthSuccess }) => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };
