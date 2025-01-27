@@ -1,35 +1,29 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Videos from "./pages/Videos";
-import AuthForm from "./components/AuthForm";
-import "./styles/auth.css";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Auth from './components/AuthForm.jsx';
+import Home from './components/HeroSection.jsx';
+import SignupDetail from './components/SignupDetail.jsx';
 
-const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Auth />,
+  },
+  {
+    path: '/home',
+    element: <Home />,
+  },
+  {
+    path: '/Signupdetails',
+    element: <SignupDetail />,
+  },
+]);
 
-  const handleAuthSuccess = () => {
-    setIsAuthenticated(true);
-  };
-
+function App() {
   return (
-    <Router>
-      {isAuthenticated ? (
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/videos" element={<Videos />} />
-          </Routes>
-          <Footer />
-        </>
-      ) : (
-        <AuthForm onAuthSuccess={handleAuthSuccess} />
-      )}
-    </Router>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
-};
+}
 
 export default App;
