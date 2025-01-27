@@ -1,9 +1,17 @@
 import React from "react";
+import NavBar from './Navbar.jsx';
+import Footer from './Footer.jsx';
 
-const HeroSection = ({ title }) => (
-  <div className="">
-    <h1>{title}</h1>
-  </div>
-);
+const HeroSection = ()=>{
+  return(
+    <div className="HeroSection">
+      <NavBar />
+      <div className="main">
+        
+      </div>
+      <Footer />
+    </div>
+  );
+}
 
 export default HeroSection;
