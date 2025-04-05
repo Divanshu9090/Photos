@@ -1,0 +1,19 @@
+.uploadBtn {
+  border: 1px solid black;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: large;
+  background-color: rgb(243, 240, 240);
+}
+
+.btn-main {
+  /* background-color: blue; */
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.main {
+  margin-top: 70px;
+}
