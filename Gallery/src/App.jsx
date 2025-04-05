@@ -1,19 +1,19 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Auth from './components/AuthForm.jsx';
-import Home from './components/HeroSection.jsx';
-import SignupDetail from './components/SignupDetail.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Auth from "./components/AuthForm.jsx";
+import Home from "./components/HeroSection.jsx";
+import SignupDetail from "./components/SignupDetail.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Auth />,
   },
   {
-    path: '/home',
+    path: "/home",
     element: <Home />,
   },
   {
-    path: '/Signupdetails',
+    path: "/Signupdetails",
     element: <SignupDetail />,
   },
 ]);
