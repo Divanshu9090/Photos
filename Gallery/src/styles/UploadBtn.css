@@ -11,7 +11,7 @@
   /* background-color: blue; */
   margin-top: 70px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .main {
