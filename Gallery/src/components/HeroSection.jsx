@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
-import UploadBtn from "./uploadBtn.jsx";
+import UploadBtn from "./UploadBtn.jsx";
 import "../styles/UploadBtn.css";
 
 const HeroSection = () => {
