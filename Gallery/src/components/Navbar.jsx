@@ -1,43 +1,61 @@
 import React from "react";
 import "../styles/Navbar.css";
-import Logo2 from '../assets/Logo2.jsx';
-import search from '../assets/search.png';
+import Logo2 from "../assets/Logo2.jsx";
+import search from "../assets/search.png";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div className="container">
       <nav className="navbar">
         <div className="navbar-logo">
           <div className="logo-img">
-            <Logo2 W={'6rem'} H={'4.5rem'} />
+            <Logo2 W={"6rem"} H={"4.5rem"} />
           </div>
           <span className="logo-text">PixelVault</span>
         </div>
         <form action="/search/" className="search">
-          <input name="search"  placeholder="Search for anything" autocomplete="off" />
+          <input
+            name="search"
+            placeholder="Search for anything"
+            autoComplete="off"
+          />
           <button type="submit" className="submit-button">
-          <img src={search} alt="search-icon" />
+            <img src={search} alt="search-icon" />
           </button>
         </form>
-          <ul className="navbar-links">
-            <li className="nav-item">
-              <a href="#" className="active">
-                Photos
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#">Videos</a>
-            </li>
-            <li className="nav-item">
-              <a href="#">Plans</a>
-            </li>
-            <li className="nav-item">
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        </div>
-        );
+        <ul className="navbar-links">
+          <li className="nav-item">
+            <a href="#" className="active">
+              Photos
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="#">Videos</a>
+          </li>
+          <li className="nav-item">
+            <a href="#">Plans</a>
+          </li>
+          <li className="nav-item">
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
+      </nav>
+    </div>
+  );
 };
 
-        export default Navbar;
+export default Navbar;

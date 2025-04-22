@@ -1,29 +1,39 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Auth from "./components/AuthForm.jsx";
-import Home from "./components/HeroSection.jsx";
+import Home from "./pages/Home.jsx";
 import SignupDetail from "./components/SignupDetail.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import PublicRoute from "./components/PublicRoute.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Auth />,
+    element: (
+      <PublicRoute>
+        <Auth />
+      </PublicRoute>
+    ),
   },
   {
     path: "/home",
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/Signupdetails",
-    element: <SignupDetail />,
+    element: (
+      <ProtectedRoute allowIfNewlySignedUp={true}>
+        <SignupDetail />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
 function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
