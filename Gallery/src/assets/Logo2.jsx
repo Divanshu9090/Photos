@@ -2,7 +2,7 @@ import React from "react";
 
 const Logo2 = ({W,H})=>{
     return (
-    <svg width={W} height={H} viewBox="0 0 350 161.95336710022002" class="looka-1j8o68f">
+    <svg width={W} height={H} viewBox="0 0 350 161.95336710022002" className="looka-1j8o68f">
         <defs id="SvgjsDefs2736"></defs>
         <g id="SvgjsG2737" featurekey="7KWit6-0"
             transform="matrix(1.4636229079356493,0,0,1.4636229079356493,101.83484441437272,-36.249627176591204)"

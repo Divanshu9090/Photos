@@ -6,7 +6,7 @@ const Logo = ()=>{
         width="70"
         height="50"
         viewBox="0 0 350 161.95336710022002"
-        class="looka-1j8o68f"
+        className="looka-1j8o68f"
     >
         <defs id="SvgjsDefs2736"></defs>
         <g
