@@ -1,0 +1,44 @@
+.profile-container {
+  position: relative;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.05);
+}
+
+.dropdown {
+  position: absolute;
+  right: -10px;
+  top: 48px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.2rem;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.dropdown-item:hover {
+  transform: scale(1.05);
+}
