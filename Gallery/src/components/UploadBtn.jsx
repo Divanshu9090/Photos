@@ -9,6 +9,7 @@ import {
   serverTimestamp,
   setDoc,
   doc,
+  getDocs,
 } from "firebase/firestore";
 
 const UploadBtn = () => {
@@ -17,10 +18,11 @@ const UploadBtn = () => {
   const [folder, setFolder] = useState("Recent");
   const [newFolder, setNewFolder] = useState("");
   const [folders, setFolders] = useState([]);
+  const [totalSize, setTotalSize] = useState(0); // Total used storage in bytes
 
   const user = auth.currentUser;
 
-  // Fetch folders from Firestore
+  // Fetch folders
   useEffect(() => {
     if (!user) return;
 
@@ -31,6 +33,24 @@ const UploadBtn = () => {
     });
 
     return () => unsubscribe();
+  }, [user]);
+
+  // Fetch total image size on mount (persistent tracking)
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchTotalStorage = async () => {
+      const photosRef = collection(db, "users", user.uid, "photos");
+      const snapshot = await getDocs(photosRef);
+      let total = 0;
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.size) total += data.size;
+      });
+      setTotalSize(total);
+    };
+
+    fetchTotalStorage();
   }, [user]);
 
   const handleFolderChange = (e) => {
@@ -51,16 +71,25 @@ const UploadBtn = () => {
     }
   };
 
-  const saveImageToFirebase = async (url) => {
+  const formatSize = (bytes) => {
+    if (bytes < 1024) return `${bytes} B`;
+    else if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
+    else return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  };
+
+  const saveImageToFirebase = async (url, sizeInBytes) => {
     if (!user) return;
 
     try {
       await addDoc(collection(db, "users", user.uid, "photos"), {
         folder,
         imageUrl: url,
+        size: sizeInBytes,
         timestamp: serverTimestamp(),
       });
-      console.log("✅ Image saved to Firestore");
+
+      setTotalSize((prevSize) => prevSize + sizeInBytes); // still update live
+      console.log("Image saved to Firestore");
     } catch (error) {
       console.error("Error saving image:", error);
     }
@@ -75,10 +104,15 @@ const UploadBtn = () => {
       },
       async function (error, result) {
         if (result && result.event === "success") {
-          console.log("📤 Upload Success:", result.info.secure_url);
-          await saveImageToFirebase(result.info.secure_url);
+          const imageUrl = result.info.secure_url;
+          const imageSize = result.info.bytes;
+
+          console.log("Upload Success:", imageUrl);
+          console.log("Image Size (bytes):", imageSize);
+
+          await saveImageToFirebase(imageUrl, imageSize);
         } else if (error) {
-          console.error("❌ Upload Error:", error);
+          console.error("Upload Error:", error);
         }
       }
     );
@@ -110,21 +144,40 @@ const UploadBtn = () => {
       </div>
 
       {/* Upload Button */}
-      <button
-        onClick={() => widgetRef.current.open()}
-        style={{
-          border: "1px solid black",
-          padding: "8px 16px",
-          borderRadius: "6px",
-          backgroundColor: "#f1f1f1",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <MdUpload />
-        Upload
-      </button>
+      {totalSize < 100 * 1024 * 1024 ? (
+        <button
+          onClick={() => widgetRef.current.open()}
+          style={{
+            border: "1px solid black",
+            padding: "8px 16px",
+            borderRadius: "6px",
+            backgroundColor: "#f1f1f1",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "1rem",
+          }}
+        >
+          <MdUpload />
+          Upload
+        </button>
+      ) : (
+        <div
+          style={{
+            color: "red",
+            fontWeight: "bold",
+            marginBottom: "1rem",
+          }}
+        >
+          Storage Limit Exceeded (100 MB)
+        </div>
+      )}
+
+      {/* Storage Usage */}
+      <div style={{ fontSize: "0.9rem", fontWeight: "500" }}>
+        Storage Used:{" "}
+        <span style={{ color: "#555" }}>{formatSize(totalSize)}</span>
+      </div>
     </div>
   );
 };

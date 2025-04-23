@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/Navbar.css";
+import "../styles/LoginIcon.css";
 import Logo2 from "../assets/Logo2.jsx";
 import search from "../assets/search.png";
+import profileIcon from "../assets/profile.png";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -14,6 +18,17 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/");
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownVisible(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="container">
@@ -24,6 +39,7 @@ const Navbar = () => {
           </div>
           <span className="logo-text">PixelVault</span>
         </div>
+
         <form action="/search/" className="search">
           <input
             name="search"
@@ -34,6 +50,7 @@ const Navbar = () => {
             <img src={search} alt="search-icon" />
           </button>
         </form>
+
         <ul className="navbar-links">
           <li className="nav-item">
             <a href="#" className="active">
@@ -50,9 +67,23 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
         </ul>
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+
+        {/* Profile Section */}
+        <div className="profile-container" ref={dropdownRef}>
+          <img
+            src={profileIcon}
+            alt="Profile"
+            className="profile-icon"
+            onClick={() => setDropdownVisible(!dropdownVisible)}
+          />
+          {dropdownVisible && (
+            <div className="dropdown">
+              <button onClick={handleLogout} className="dropdown-item">
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   );
