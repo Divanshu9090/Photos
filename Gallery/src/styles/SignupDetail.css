@@ -1,153 +1,154 @@
 #SignupDetail-content {
-    margin: 0;
-    padding: 0;
-    background-color: #edebeb;
+  margin: 0;
+  padding: 0;
+  background-color: #edebeb;
 }
 
 #SignupDetail-content .nav-container {
-    width: 100%;
-    margin: 0;
-    padding: 0.625rem; 
-    text-align: center;
-    font-size: 1.125rem;
-    font-weight: bold;
-    background-color: #ff7f17;
-    color: white;
-    position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0.625rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: bold;
+  background-color: #ff7f17;
+  color: white;
+  position: relative;
 }
 
 #SignupDetail-content #logo {
-    width: 3.75rem;
-    position: absolute;
-    top: 0.025rem; 
-    left: 0.625rem;
+  width: 3.75rem;
+  position: absolute;
+  top: 0.025rem;
+  left: 0.625rem;
 }
 
 #SignupDetail-content .form-container {
-    width: 70%;
-    height: auto;
-    margin: 1.25rem auto;
-    background-color: white;
-    padding: 2rem 3rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  width: 70%;
+  height: auto;
+  margin: 1.25rem auto;
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
-#SignupDetail-content .form-container h2{
-    font-size: 3rem;
-    color: #ff7f17;
+#SignupDetail-content .form-container h2 {
+  font-size: 3rem;
+  color: #ff7f17;
 }
 
 #SignupDetail-content .image-upload {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 #SignupDetail-content legend,
 #SignupDetail-content span,
 #SignupDetail-content fieldset {
-    color: rgb(13, 30, 50);
+  color: rgb(13, 30, 50);
 }
 
 #SignupDetail-content fieldset {
-    width: 80%;
-    font-size: 2rem;
-    margin: 2.5rem auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 0.3125rem;
+  width: 80%;
+  font-size: 2rem;
+  margin: 2.5rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 0.3125rem;
 }
 
 #SignupDetail-content fieldset label {
-    font-size:  1rem;
-    font-weight: 400;
-    padding-left:2rem;
-    display: inline-block;
-    margin-bottom: 0.625rem;
+  font-size: 1rem;
+  font-weight: 400;
+  padding-left: 2rem;
+  display: inline-block;
+  margin-bottom: 0.625rem;
 }
 
-#SignupDetail-content fieldset input,select{
-    padding-left: 0.3125rem;
-    border-radius: 0.625rem;
-    height: 3.125rem;
-    width: 21.875rem;
-    border: none;
-    background-color: white;
-    outline: none;
+#SignupDetail-content fieldset input,
+select {
+  padding-left: 0.3125rem;
+  border-radius: 0.625rem;
+  height: 3.125rem;
+  width: 21.875rem;
+  border: none;
+  background-color: white;
+  outline: none;
 }
 
 #SignupDetail-content #profileImage {
-    display: none; 
+  display: none;
 }
 
 #SignupDetail-content .image-preview {
-    text-align: center;
+  text-align: center;
 }
 
 #SignupDetail-content fieldset .radio-group {
-    display: inline;
+  display: inline;
 }
 
 #SignupDetail-content .form-container button {
-    margin: 0 2rem;
-    padding: 0.5rem 1rem;
+  margin: 0 2rem;
+  padding: 0.5rem 1rem;
 }
 
 #SignupDetail-content #hidden {
-    display: inline-block;
-    color: white;
-    padding: 0.3125rem 1.25rem;
-    margin-bottom: 1.5625rem;
-    background-color: #ff7f17;
-    border-radius: 0.3125rem;
-    font-size: 1.35rem;
+  display: inline-block;
+  color: white;
+  padding: 0.3125rem 1.25rem;
+  margin-bottom: 1.5625rem;
+  background-color: #ff7f17;
+  border-radius: 0.3125rem;
+  font-size: 1.35rem;
 }
 
 #SignupDetail-content #ip {
-    width: 5rem;
-    height: 5rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 #SignupDetail-content .submit-button {
-    color: white;
-    padding: 0.125rem 1.25rem;
-    background-color: #ff7f17;
-    border: 0 solid #ff7f17;
-    border-radius: 0.3125rem;
-    font-size: 1.35rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex; 
-    justify-content: center;
-    align-content: center;
-    justify-self: center;
+  color: white;
+  padding: 0.125rem 1.25rem;
+  background-color: #ff7f17;
+  border: 0 solid #ff7f17;
+  border-radius: 0.3125rem;
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
 }
 
 #SignupDetail-content .submit-button:disabled {
-    background-color: #d6a5a5;
-    cursor: not-allowed;
+  background-color: #d6a5a5;
+  cursor: not-allowed;
 }
 
 #SignupDetail-content .hidden {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 48rem) {
-    #SignupDetail-content .form-container {
-        width: 90%;
-        padding: 0.9375rem 1.25rem;
-    }
+  #SignupDetail-content .form-container {
+    width: 90%;
+    padding: 0.9375rem 1.25rem;
+  }
 
-    #SignupDetail-content fieldset {
-        font-size: 1.25rem;
-    }
+  #SignupDetail-content fieldset {
+    font-size: 1.25rem;
+  }
 
-    #SignupDetail-content fieldset label {
-        font-size: 0.875 rem;
-        padding-left: 0.625rem;
-    }
+  #SignupDetail-content fieldset label {
+    font-size: 0.875 rem;
+    padding-left: 0.625rem;
+  }
 
-    #SignupDetail-content .nav-container {
-        font-size: 1rem;
-    }
+  #SignupDetail-content .nav-container {
+    font-size: 1rem;
+  }
 }
