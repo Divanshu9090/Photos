@@ -1,17 +1,12 @@
 .footer {
-  width: 100vw;
-  height: 3rem;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #666;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 1.3rem 2rem;
+  text-align: center;
+  margin-top: auto;
 }
 
 .footer-bottom {
-  font-size: 0.9rem;
-  color: white;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
