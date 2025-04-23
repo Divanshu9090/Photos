@@ -18,8 +18,8 @@
 
 - *Frontend*: React.js, HTML, CSS, JavaScript, TailwindCSS
 - *Authentication*: Auth0
-- *Cloud Storage: Firebase , cloudinary
-- *Payment Integration (Planned)*: Razorpay
+- *Cloud Storage:* Firebase , cloudinary
+- *Payment Integration (To Be Implemented)*: Razorpay
 
 ---
 
