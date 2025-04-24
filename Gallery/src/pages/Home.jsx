@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer.jsx";
 import NavBar from "../components/Navbar.jsx";
 import UploadBtn from "../components/UploadBtn.jsx";
-import ImageCard from "../components/ImageCard.jsx"; // Import the ImageCard component
+import ImageCard from "../components/ImageCard.jsx";
 import { auth, db } from "../utils/firebase";
 import EditImage from "../components/EditImage.jsx";
+import "../styles/ViewFolder.css";
 
 const Home = () => {
   const [images, setImages] = useState([]);
@@ -42,7 +43,7 @@ const Home = () => {
       setImages(fetchedImages);
     });
     return () => unsubscribe();
-  }, [folder]);
+  }, [selectedFolder]);
 
   const handleEdit = (image) => {
     setSelectedImage(image);
@@ -56,7 +57,7 @@ const Home = () => {
   };
 
   return (
-    <div className="HeroSection" >
+    <div className="HeroSection">
       <NavBar />
       <div className="btn-main">
         <div style={{ marginTop: "3rem" }}>

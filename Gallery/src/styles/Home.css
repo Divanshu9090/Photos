@@ -1,137 +1,35 @@
-/* Main container for the page */
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* Main container for the home page */
+.HeroSection {
+  font-family: "Segoe UI", sans-serif;
   background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
+  padding: 2rem;
+  min-height: 100vh;
 }
 
-/* Folder selector (dropdown) styling */
-.folder-selector {
-  margin-top: 4rem;
-  padding: 1rem 2rem;
+/* Container for the folder selection dropdown */
+.btn-main {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  justify-content: flex-start;
+  margin-top: 2rem;
 }
 
-/* Style for the folder selector dropdown */
-.folder-selector select {
-  padding: 0.4rem 0.6rem;
+#folder-select {
+  padding: 0.5rem;
+  font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-  background-color: white;
+  margin-top: 1rem;
 }
 
-/* Image grid styling (responsive grid for images) */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-  padding: 1rem 2rem;
-  justify-items: center;
+/* Upload button section */
+.upload-btn-wrapper {
+  margin-top: 2rem;
 }
 
-/* Styling for individual image cards in the grid */
-.image-card {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-}
-
-/* Image inside the card styling */
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-/* Hover effect for the images */
-.image:hover {
-  transform: scale(1.1);
-}
-
-/* Text shown when no images are available */
-.no-images-text {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  color: #777;
-}
-
-/* Modal overlay styling */
-.image-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1001;
+/* Footer section */
+footer {
+  margin-top: 3rem;
+  text-align: center;
   padding: 1rem;
-}
-
-/* Modal overlay background */
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-}
-
-/* Modal content (image container) */
-.modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-  z-index: 1001;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Image in the modal */
-.modal-image {
-  width: 100%;
-  height: auto;
-  max-height: 80vh;
-  object-fit: contain;
-  display: block;
-}
-
-/* Close button inside the modal */
-.close-modal-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #d4d3d3;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1002;
-}
-
-.close-modal-btn:hover {
-  background: #a19e9e;
+  background-color: #f1f1f1;
 }

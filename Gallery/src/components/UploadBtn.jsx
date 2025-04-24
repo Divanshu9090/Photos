@@ -11,13 +11,14 @@ import {
   doc,
   getDocs,
 } from "firebase/firestore";
+import "../styles/UploadBtn.css"; // Import your CSS file
 
 const UploadBtn = ({ folder, setFolder }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [newFolder, setNewFolder] = useState("");
   const [folders, setFolders] = useState([]);
-  const [totalSize, setTotalSize] = useState(0); 
+  const [totalSize, setTotalSize] = useState(0);
   const user = auth.currentUser;
 
   useEffect(() => {
@@ -115,10 +116,10 @@ const UploadBtn = ({ folder, setFolder }) => {
   }, [folder]);
 
   return (
-    <div>
+    <div className="upload-section">
       {/* Folder Selector */}
-      <div className="folder-control" style={{ marginBottom: "1rem" }}>
-        <label style={{ marginRight: "0.5rem" }}>Choose Folder:</label>
+      <div className="folder-control">
+        <label>Choose Folder:</label>
         <select value={folder} onChange={handleFolderChange}>
           {folders.map((f, idx) => (
             <option key={idx} value={f}>
@@ -126,53 +127,39 @@ const UploadBtn = ({ folder, setFolder }) => {
             </option>
           ))}
         </select>
-        <br />
         <input
           type="text"
           value={newFolder}
           onChange={(e) => setNewFolder(e.target.value)}
           placeholder="New folder name"
-          style={{ marginTop: "0.5rem" }}
         />
-        <button onClick={handleCreateFolder} style={{ marginLeft: "0.5rem" }}>
-          + Create
-        </button>
+        <button onClick={handleCreateFolder}>+ Create</button>
       </div>
 
-      {/* Upload Button */}
-      {totalSize < 100 * 1024 * 1024 ? (
-        <button
-          onClick={() => widgetRef.current.open()}
-          style={{
-            border: "1px solid black",
-            padding: "8px 16px",
-            borderRadius: "6px",
-            backgroundColor: "#f1f1f1",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "1rem",
-          }}
-        >
-          <MdUpload />
-          Upload
-        </button>
-      ) : (
-        <div
-          style={{
-            color: "red",
-            fontWeight: "bold",
-            marginBottom: "1rem",
-          }}
-        >
-          Storage Limit Exceeded (100 MB)
-        </div>
-      )}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        {/* Upload Button */}
+        {totalSize < 100 * 1024 * 1024 ? (
+          <button
+            className="upload-trigger"
+            onClick={() => widgetRef.current.open()}
+          >
+            <MdUpload />
+            Upload
+          </button>
+        ) : (
+          <div className="limit-exceeded">Storage Limit Exceeded (100 MB)</div>
+        )}
 
-      {/* Storage Usage */}
-      <div style={{ fontSize: "0.9rem", fontWeight: "500" }}>
-        Storage Used:{" "}
-        <span style={{ color: "#555" }}>{formatSize(totalSize)}</span>
+        {/* Storage Usage */}
+        <div className="storage-text">
+          Storage Used: <span>{formatSize(totalSize)}</span>
+        </div>
       </div>
     </div>
   );

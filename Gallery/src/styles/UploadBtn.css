@@ -1,53 +1,54 @@
-.upload-container {
-  display: flex;
+/* Container for the whole upload section */
+.upload-section {
   width: 90vw;
-  justify-content: space-between;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 2rem auto;
   padding: 1.5rem;
   border-radius: 12px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   font-family: "Segoe UI", sans-serif;
+  display: flex;
+
 }
 
+/* Folder selector block */
 .folder-control {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .folder-control label {
   font-weight: 600;
-  display: block;
-  margin-bottom: 0.4rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 
 .folder-control select {
   width: 100%;
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 0.95rem;
+  font-size: 1rem;
   background-color: #fff;
   height: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.create-folder {
-  display: flex;
-  margin-top: 0.6rem;
-  gap: 0.4rem;
-}
-
-.create-folder input {
-  flex-grow: 1;
-  padding: 0.4rem 0.6rem;
+.folder-control input[type="text"] {
+  width: calc(100% - 100px);
+  padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
   height: 2.5rem;
 }
 
-.create-folder button {
-  padding: 0.4rem 0.8rem;
+.folder-control button {
+  padding: 0.5rem 0.8rem;
+  margin-left: 0.5rem;
   background-color: #1976d2;
   color: #fff;
   border: none;
@@ -55,43 +56,50 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
+  height: 2.5rem;
 }
 
-.create-folder button:hover {
+.folder-control button:hover {
   background-color: #1565c0;
 }
 
-.upload-btn {
-  display: flex;
+/* Upload button */
+.upload-trigger {
+  border: 1px solid #000;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #f1f1f1;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 1rem;
-  font-weight: 600;
-  max-width: 12rem;
-  max-height: 3rem;
-  padding: 10px;
-  color: #fff;
-  background-color: #4caf50;
-  border: 1px solid rgb(3, 77, 3);
-  border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  width: 10vw;
+  height: 5vh;
+  margin: 2rem;
 }
 
-.upload-btn:hover {
-  background-color: #43a047;
+.upload-trigger:hover {
+  background-color: #e2e2e2;
 }
 
+/* Storage exceeded message */
 .limit-exceeded {
   color: #d32f2f;
-  font-weight: 600;
-  margin-top: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
+/* Storage info text */
 .storage-text {
-  margin-top: 1.5rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: #555;
+}
+
+.storage-text span {
+  color: #333;
 }

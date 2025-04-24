@@ -24,7 +24,6 @@ const Navbar = () => {
     navigate("/");
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -76,7 +75,7 @@ const Navbar = () => {
         {/* Profile Section */}
         <div className="profile-container" ref={dropdownRef}>
           <img
-            src={profileIcon}
+            src={user?.profileImage || profileIcon}
             alt="Profile"
             className="profile-icon"
             onClick={() => setDropdownVisible(!dropdownVisible)}
