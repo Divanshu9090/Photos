@@ -1,11 +1,14 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
 }
+
 .container {
   display: flex;
   flex-direction: column;
 }
+
 .navbar {
   position: fixed;
   top: 0;
@@ -17,6 +20,9 @@ body {
   background-color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100vw;
+  height: 9vh;
+  border-bottom: 2px solid #ccc;
+  z-index: 1000;
 }
 
 .navbar-logo {
@@ -24,7 +30,7 @@ body {
   align-items: center;
 }
 
-.logo-img{
+.logo-img {
   height: 3rem;
 }
 
@@ -35,22 +41,23 @@ body {
   font-weight: bold;
 }
 
-.search{
+.search {
   display: flex;
   flex-direction: row-reverse;
-  border: 1.5px solid black ;
+  border: 1.5px solid black;
   padding: 0.25rem 0.5rem;
   border-radius: 5rem;
 }
 
-.search input,button{
+.search input,
+button {
   outline: none;
   border: none;
   margin: 0.125rem 1rem;
   background-color: white;
 }
 
-.search button img{
+.search button img {
   margin-top: 0.4rem;
   width: 1.05rem;
   height: 1rem;
@@ -84,4 +91,50 @@ body {
   position: absolute;
   bottom: -4px;
   left: 0;
+}
+
+/* Profile Dropdown */
+.profile-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 900;
+}
+
+.dropdown-user {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+  padding: 0.8rem;
+  border-bottom: 1px solid #c2bfbf;
+}
+
+.dropdown-item {
+  background: none;
+  border: none;
+  color: #e53935;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
 }

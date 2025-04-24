@@ -10,8 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUser(auth.currentUser);
+  }, []);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -78,6 +83,11 @@ const Navbar = () => {
           />
           {dropdownVisible && (
             <div className="dropdown">
+              {user && (
+                <div className="dropdown-user">
+                  <p>{user.displayName || user.email}</p>
+                </div>
+              )}
               <button onClick={handleLogout} className="dropdown-item">
                 Logout
               </button>
