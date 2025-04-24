@@ -5,12 +5,13 @@ import NavBar from "../components/Navbar.jsx";
 import UploadBtn from "../components/UploadBtn.jsx";
 import { auth, db } from "../utils/firebase";
 import "../styles/Home.css";
-import "../styles/UploadBtn.css";
+// import "../styles/UploadBtn.css";
 
 const Home = () => {
   const [images, setImages] = useState([]);
   const [folders, setFolders] = useState(["Recent"]);
-  const [selectedFolder, setSelectedFolder] = useState("Recent");
+  const [folder, setFolder] = useState("Recent");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -31,10 +32,10 @@ const Home = () => {
 
   useEffect(() => {
     const user = auth.currentUser;
-    if (!user || !selectedFolder) return;
+    if (!user || !folder) return;
 
     const ref = collection(db, "users", user.uid, "photos");
-    const q = query(ref, where("folder", "==", selectedFolder));
+    const q = query(ref, where("folder", "==", folder));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedImages = snapshot.docs.map((doc) => ({
@@ -45,7 +46,15 @@ const Home = () => {
     });
 
     return () => unsubscribe();
-  }, [selectedFolder]);
+  }, [folder]);
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
 
   return (
     <div className="hero-section">
@@ -54,8 +63,8 @@ const Home = () => {
         <label htmlFor="folder-select">View Folder:</label>
         <select
           id="folder-select"
-          value={selectedFolder}
-          onChange={(e) => setSelectedFolder(e.target.value)}
+          value={folder}
+          onChange={(e) => setFolder(e.target.value)}
         >
           {folders.map((folder, idx) => (
             <option key={idx} value={folder}>
@@ -64,11 +73,15 @@ const Home = () => {
           ))}
         </select>
       </div>
-      <UploadBtn />
+      <UploadBtn folder={folder} setFolder={setFolder} />
       <div className="image-grid">
         {images.length > 0 ? (
           images.map((image) => (
-            <div className="image-card" key={image.id}>
+            <div
+              className="image-card"
+              key={image.id}
+              onClick={() => handleImageClick(image.imageUrl)}
+            >
               <img src={image.imageUrl} alt="uploaded" className="image" />
             </div>
           ))
@@ -76,6 +89,19 @@ const Home = () => {
           <p className="no-images-text">No images in this folder yet.</p>
         )}
       </div>
+
+      {selectedImage && (
+        <div className="image-modal">
+          <div className="modal-overlay" onClick={closeModal}></div>
+          <div className="modal-content">
+            <img src={selectedImage} alt="selected" className="modal-image" />
+            <button className="close-modal-btn" onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
