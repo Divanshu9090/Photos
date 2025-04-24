@@ -12,6 +12,9 @@ const Home = () => {
   const [folders, setFolders] = useState(["Recent"]);
   const [selectedFolder, setSelectedFolder] = useState("Recent");
 
+  // State to hold the selected image for viewing in a modal
+  const [selectedImage, setSelectedImage] = useState(null);
+
   useEffect(() => {
     const user = auth.currentUser;
     if (!user) return;
@@ -47,6 +50,16 @@ const Home = () => {
     return () => unsubscribe();
   }, [selectedFolder]);
 
+  // Function to handle the image click, setting the selected image
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  // Function to close the modal (reset selected image)
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="hero-section">
       <NavBar />
@@ -68,7 +81,11 @@ const Home = () => {
       <div className="image-grid">
         {images.length > 0 ? (
           images.map((image) => (
-            <div className="image-card" key={image.id}>
+            <div
+              className="image-card"
+              key={image.id}
+              onClick={() => handleImageClick(image.imageUrl)} // Set the clicked image to be displayed in the modal
+            >
               <img src={image.imageUrl} alt="uploaded" className="image" />
             </div>
           ))
@@ -76,6 +93,20 @@ const Home = () => {
           <p className="no-images-text">No images in this folder yet.</p>
         )}
       </div>
+
+      {/* Modal to display clicked image */}
+      {selectedImage && (
+        <div className="image-modal">
+          <div className="modal-overlay" onClick={closeModal}></div>
+          <div className="modal-content">
+            <img src={selectedImage} alt="selected" className="modal-image" />
+            <button className="close-modal-btn" onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
