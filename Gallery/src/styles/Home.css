@@ -9,6 +9,7 @@
 
 /* Folder selector (dropdown) styling */
 .folder-selector {
+  margin-top: 4rem;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
