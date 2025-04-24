@@ -12,10 +12,9 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-const UploadBtn = () => {
+const UploadBtn = ({ folder, setFolder }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-  const [folder, setFolder] = useState("Recent");
   const [newFolder, setNewFolder] = useState("");
   const [folders, setFolders] = useState([]);
   const [totalSize, setTotalSize] = useState(0); 

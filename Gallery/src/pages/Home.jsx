@@ -42,7 +42,7 @@ const Home = () => {
       setImages(fetchedImages);
     });
     return () => unsubscribe();
-  }, [selectedFolder]);
+  }, [folder]);
 
   const handleEdit = (image) => {
     setSelectedImage(image);
